@@ -30,6 +30,7 @@ function displayWorks(works) {
   const gallery = document.querySelector('.gallery');
   works.forEach(work => {
     const figure = document.createElement('figure');
+
     const img = document.createElement('img');
     img.src = work.imageUrl;
     img.alt = work.title;
@@ -39,7 +40,7 @@ function displayWorks(works) {
     figcaption.textContent = work.title;
     figure.appendChild(figcaption);
 
-    gallery.appendChild(figure);
+    gallery.appendChild(figure);  
   });
 }
 
@@ -85,4 +86,114 @@ function filterWorks(categoryId) {
   const filteredWorks = categoryId === 0 ? allWorks : allWorks.filter(work => work.categoryId === categoryId);
   removeExistingWorks();
   displayWorks(filteredWorks);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Bouton d'ouverture de la modale
+  const editButton = document.querySelector('#edit-button');
+  editButton.addEventListener('click', openModal);
+
+  // Bouton de fermeture de la modale
+  const closeButton = document.querySelector('#close-button');
+  closeButton.addEventListener('click', closeModal);
+
+  // Cliquez en dehors de la modale pour la fermer
+  window.onclick = (event) => {
+    const modal = document.querySelector('#modal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+});
+
+// Fonction pour ouvrir la modale et afficher les images de la galerie
+function openModal() {
+  const modal = document.querySelector('#modal');
+  const gallery = document.querySelector('#gallery');
+  
+  // Supprime les images existantes de la galerie
+  while (gallery.firstChild) {
+    gallery.removeChild(gallery.firstChild);
+  }
+
+// Ajoute les images à la galerie
+allWorks.forEach((work, index) => {
+  const container = document.createElement('div');
+  container.style.position = 'relative'; // Ajouter le positionnement relatif au conteneur
+
+  const img = document.createElement('img');
+  img.src = work.imageUrl;
+  img.alt = work.title;
+  container.appendChild(img);
+
+  const editText = document.createElement('p');
+  editText.textContent = 'éditer';
+  container.appendChild(editText);
+
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-button'); // Ajoutez la classe delete-button
+  deleteButton.dataset.workIndex = index; // Ajouter l'attribut data-work-index au bouton de suppression
+
+  const deleteIcon = document.createElement('i');
+  deleteIcon.classList.add('fas', 'fa-trash-can');
+  deleteButton.appendChild(deleteIcon);
+
+  container.appendChild(deleteButton);
+  
+  gallery.appendChild(container);
+});
+
+  // Affiche la modale
+  modal.classList.remove('hidden');
+}
+
+// Fonction pour fermer la modale
+function closeModal() {
+  const modal = document.querySelector('#modal');
+  modal.classList.add('hidden');
+}
+
+// Gestionnaire d'événements pour le bouton de suppression
+document.addEventListener('click', async (event) => {
+  if (event.target.tagName === 'BUTTON' || event.target.classList.contains('fa-trash-can')) {
+    let workIndex = event.target.dataset.workIndex;
+    if (!workIndex && event.target.parentNode.tagName === 'BUTTON') {
+      workIndex = event.target.parentNode.dataset.workIndex;
+    }
+    if (workIndex !== undefined) {
+      await deleteWork(parseInt(workIndex));
+      // Refresh the works
+      removeExistingWorks();
+      const works = await fetchWorks();
+      displayWorks(works);
+    } else {
+      console.error('Impossible de trouver ou récupérer l\'ID du travail');
+    }
+  }
+});
+
+// Fonction pour supprimer un travail
+async function deleteWork(workIndex) {
+  try {
+    const work = allWorks[workIndex];
+    if (!work) {
+      console.error('Impossible de trouver le travail');
+      return;
+    }
+
+    const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    if (response.ok) {
+      console.log('Travail supprimé');
+    } else {
+      console.error('Erreur lors de la suppression du travail', response);
+    }
+  } catch (error) {
+    console.error('Erreur lors de la suppression du travail', error);
+  }
 }

@@ -132,7 +132,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -221,4 +220,164 @@ footer nav ul {
 .category-menu button.active {
 	color: white;
 	background-color: #1D6154;
+}
+
+
+
+/* Modale et son contenu */
+.projects-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 300px;
+	margin: auto;
+	margin-bottom: 3em;
+	margin-top: 3em;
+}
+
+#edit-button {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+#edit-button i {
+	margin-right: 0.5em;
+}
+
+
+#modal {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+}
+
+#modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 630px;
+	height: 731px;
+	position: relative;
+	border-radius: 10px;
+}
+
+#modal-content h2 {
+	margin-top: 60px;
+	margin-bottom: 46px;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30px;
+	letter-spacing: 0em;
+	text-align: center;
+	color: black;
+}
+
+/* Bouton de fermeture de la modale */
+#close-button {
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+	width: 420px;
+	margin: 30px auto;
+}
+
+#gallery img {
+    height: 102px;
+	width: 76px;
+	margin: 4px;
+}
+
+#button-container {
+    text-align: center;
+	margin-top: 38px;
+}
+
+/* Bouton ajouter une photo */
+#add-photo-button {
+	font-family: 'Syne';
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-weight: 700;
+	background-color: #1D6154;
+	color: white;
+	border: 2px solid #1D6154;
+	margin: 0.25em;
+	padding: 0 1em;
+	cursor: pointer;
+	border-radius: 60px;
+	height: 40px;
+	font-size: 16px;
+}
+
+/* Texte supprimer la galerie */
+#delete-gallery {
+	color: #D65353;
+	text-align: center;
+	margin-top: 23px;
+}
+
+/* Séparateur */
+hr {
+	border: none;
+	color: #B3B3B3;
+	width: 420px;
+	height: 0px;
+	border: 1px solid #B3B3B3;
+}
+
+/* Cache la modale */
+.hidden {
+	display: none !important;
+}
+
+#gallery > div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin-bottom: 13px;
+	color: black;
+	position: relative;
+}
+
+#gallery > div > p {
+	margin-left: 4px;
+}
+
+
+
+#gallery .delete-button {
+    background: #000000;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 2px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+    height: 17px;
+}
+
+.fa-trash-can {
+	position: absolute;
+    color: #ffffff;
+	font-size: 9px;
 }

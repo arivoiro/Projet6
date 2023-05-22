@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/417caa8952.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
@@ -35,50 +36,56 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="projects-header">
+			<h2>Mes Projets</h2>
+			<div id="edit-button">
+				<i class="fa-solid fa-pen-to-square"></i>
+				<span>modifier</span>
+			</div>
+		</div>
 		<div class="category-menu"></div>
 		<div class="gallery">
-			<figure>
+			<figure data-work-id="1">
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
 				<figcaption>Abajour Tahina</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="2">
 				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
 				<figcaption>Appartement Paris V</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="3">
 				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
 				<figcaption>Restaurant Sushisen - Londres</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="4">
 				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
 				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="5">
 				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
 				<figcaption>Structures Thermopolis</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="6">
 				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
 				<figcaption>Appartement Paris X</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="7">
 				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
 				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="8">
 				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
 				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="9">
 				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
 				<figcaption>Appartement Paris XVIII</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="10">
 				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
 				<figcaption>Bar “Lullaby” - Paris</figcaption>
 			</figure>
-			<figure>
+			<figure data-work-id="11">
 				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
 				<figcaption>Hotel First Arte - New Delhi</figcaption>
 			</figure>
@@ -106,6 +113,21 @@
 		</ul>
 	</nav>
 </footer>
+<!-- Modale -->
+<div id="modal" class="hidden">
+	<div id="modal-content">
+		<i id="close-button" class="fas fa-times"></i>
+		<h2>Galerie Photo</h2>
+    	<div id="gallery">
+    	<!-- Les images de la galerie seront ajoutées ici par JavaScript -->
+		</div>
+		<hr>
+    	<div id="button-container">
+			<button id="add-photo-button">Ajouter une photo</button>
+		</div>
+    	<p id="delete-gallery">Supprimer la galerie</p>
+	</div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
