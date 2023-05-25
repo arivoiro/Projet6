@@ -358,8 +358,6 @@ hr {
 	margin-left: 4px;
 }
 
-
-
 #gallery .delete-button {
     background: #000000;
     border: none;
@@ -380,4 +378,216 @@ hr {
 	position: absolute;
     color: #ffffff;
 	font-size: 9px;
+}
+
+
+
+
+/* Formulaire et son contenu */
+
+
+.upload-container {
+    width: 420px;
+    height: 169px;
+    background: #E8F1F7;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-icon {
+    font-size: 55px;
+    position: relative;
+    top: -15px;
+}
+
+.upload-button {
+    width: 173px;
+    height: 36px;
+    background: #CBD6DC;
+    border-radius: 50px;
+    color: #306685;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.upload-text {
+    color: #444444;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: center;
+    position: relative;
+    top: -10px;
+}
+
+#displayImage {
+    display: none;
+}
+
+.gallery-item {
+	position: relative;
+  }
+
+
+
+
+#modal-form {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+}
+
+#modal-form-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 630px;
+	height: 731px;
+	position: relative;
+	border-radius: 10px;
+}
+
+#modal-form-content #back-button {
+	cursor: pointer;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+#modal-form-content #close-form-button {
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+#modal-form-content h2 {
+	margin-top: 60px;
+	margin-bottom: 46px;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30px;
+	letter-spacing: 0em;
+	text-align: center;
+	color: black;
+}
+
+/* Bouton ajouter une photo */
+#add-form-photo-button {
+	font-family: 'Syne';
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-weight: 700;
+	background-color: #1D6154;
+	color: white;
+	border: 2px solid #1D6154;
+	margin: 0.25em;
+	padding: 0 1em;
+	cursor: pointer;
+	border-radius: 60px;
+	height: 40px;
+	font-size: 16px;
+}
+
+#uploadForm {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+
+#uploadForm .upload-container i {
+	font-size: 55px;
+	margin-top: 25px;
+	color: #B9C5CC;
+}
+
+#uploadForm .upload-container button {
+	width: 173px;
+	height: 36px;
+	background: #CBD6DC;
+	border-radius: 50px;
+	color: #306685;
+	font-family: "Work Sans", sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0em;
+	text-align: center;
+}
+
+#uploadForm .upload-container p {
+	color: #444444;
+	font-family: "Work Sans", sans-serif;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0em;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#uploadForm input, select {
+	width: 420px;
+	height: 51px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#uploadForm label {
+	margin: 2em 0 1em 0;
+}
+
+#uploadForm label[for="title"] {
+	margin-right: 28em;
+}
+
+#uploadForm label[for="category"] {
+	margin-right: 25.3em;
+}
+
+#uploadForm select {
+    border: none;
+}
+
+
+#uploadForm hr {
+	margin-top: 3em;
+}
+
+#uploadForm input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #A7A7A7;
+	margin : 3em auto ;
+	width: 237px;
+	height: 36px;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	border-radius: 60px ;
 }

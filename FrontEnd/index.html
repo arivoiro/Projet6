@@ -128,6 +128,31 @@
     	<p id="delete-gallery">Supprimer la galerie</p>
 	</div>
 </div>
+
+<!-- Formulaire -->
+<div id="modal-form" class="hidden">
+	<div id="modal-form-content">
+		<i id="back-button" class="fas fa-arrow-left"></i>
+		<i id="close-form-button" class="fas fa-times"></i>
+		<h2>Ajout photo</h2>
+		<form id="uploadForm" action="/upload" method="POST">
+			<div class="upload-container">
+				<i class="far fa-image upload-icon"></i>
+				<input type="file" id="imageUpload" accept="image/*" style="display: none">
+				<button id="uploadButton" class="upload-button">+ Ajouter photo</button>
+				<p class="upload-text">jpg, png : 4mo max</p>
+			</div>
+			<img id="displayImage" />
+			<label for="title">Titre</label>
+			<input type="text" id="title">
+			<label for="category">Catégorie</label>
+			<select id="category"></select>
+			<hr>
+			<input type="submit" value="Valider">
+		</form>
+		<img id="displayImage" />
+	</div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
