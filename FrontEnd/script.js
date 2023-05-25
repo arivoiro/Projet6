@@ -88,6 +88,23 @@ function filterWorks(categoryId) {
   displayWorks(filteredWorks);
 }
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const editButton = document.getElementById('edit-button');
+
+  // Vérifie si l'utilisateur est connecté 
+  const token = localStorage.getItem('token');
+  if (token) {
+    // Si l'utilisateur est connecté, affiche le bouton "modifier"
+    editButton.style.display = 'block';
+  } else {
+    // Sinon, masque le bouton "modifier"
+    editButton.style.display = 'none';
+  }
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // Bouton d'ouverture de la modale
   const editButton = document.querySelector('#edit-button');
@@ -374,13 +391,13 @@ document.addEventListener('DOMContentLoaded', () => {
   imageInput.addEventListener('change', validateForm);
 
   function validateForm() {
-    // Vérifiez si tous les champs sont remplis
+    // Vérifie si tous les champs sont remplis
     if (titleInput.value && categoryInput.value && imageInput.files.length > 0) {
-      // Si oui, ajoutez la classe 'valid' au bouton de soumission
-      submitButton.classList.add('valid');
+      // Si oui, ajoute la classe 'logged' au bouton de soumission
+      submitButton.classList.add('logged');
     } else {
-      // Sinon, retirez la classe 'valid'
-      submitButton.classList.remove('valid');
+      // Sinon, retire la classe 'logged'
+      submitButton.classList.remove('logged');
     }
   }
 });

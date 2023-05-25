@@ -243,11 +243,6 @@ footer nav ul {
 	cursor: pointer;
 }
 
-#edit-button i {
-	margin-right: 0.5em;
-}
-
-
 #modal {
 	position: fixed;
 	z-index: 1;
@@ -608,6 +603,6 @@ input #work-title:focus {
 	border: none;
 }
 
-button#work-submit.valid {
+button #work-submit.logged {
 	background-color: #1D6154;
 }
