@@ -281,8 +281,8 @@ footer nav ul {
 #close-button {
 	cursor: pointer;
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 15px;
+	top: 15px;
 }
 
 #gallery {
@@ -336,11 +336,6 @@ hr {
 	border: 1px solid #B3B3B3;
 }
 
-/* Cache la modale */
-.hidden {
-	display: none !important;
-}
-
 #gallery > div {
 	display: flex;
 	flex-direction: column;
@@ -378,7 +373,10 @@ hr {
 }
 
 
-
+/* Cache la modale et le formulaire */
+.hidden {
+	display: none !important;
+}
 
 /* Formulaire et son contenu */
 
@@ -470,15 +468,15 @@ hr {
 #modal-form-content #back-button {
 	cursor: pointer;
 	position: absolute;
-	left: 10px;
-	top: 10px;
+	left: 20px;
+	top: 20px;
 }
 
 #modal-form-content #close-form-button {
 	cursor: pointer;
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 20px;
+	top: 20px;
 }
 
 #modal-form-content h2 {
@@ -603,6 +601,6 @@ input #work-title:focus {
 	border: none;
 }
 
-button #work-submit.logged {
+button#work-submit.logged {
 	background-color: #1D6154;
 }
