@@ -135,22 +135,21 @@
 		<i id="back-button" class="fas fa-arrow-left"></i>
 		<i id="close-form-button" class="fas fa-times"></i>
 		<h2>Ajout photo</h2>
-		<form id="uploadForm" action="/upload" method="POST">
+		<form id="uploadForm" method="POST">
 			<div class="upload-container">
 				<i class="far fa-image upload-icon"></i>
-				<input type="file" id="imageUpload" accept="image/*" style="display: none">
+				<input type="file" id="imageUpload" accept="image/*">
 				<button id="uploadButton" class="upload-button">+ Ajouter photo</button>
 				<p class="upload-text">jpg, png : 4mo max</p>
 			</div>
 			<img id="displayImage" />
-			<label for="title">Titre</label>
-			<input type="text" id="title">
-			<label for="category">Catégorie</label>
-			<select id="category"></select>
+			<label for="work-title">Titre</label>
+			<input type="text" id="work-title">
+			<label for="work-category">Catégorie</label>
+			<select id="work-category"></select>
 			<hr>
-			<input type="submit" value="Valider">
+			<button type="submit" id="work-submit">Valider</button>
 		</form>
-		<img id="displayImage" />
 	</div>
 </div>
 <script src="script.js"></script>

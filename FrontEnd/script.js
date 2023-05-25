@@ -217,18 +217,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToModalButton = document.querySelector('#back-button');
   backToModalButton.addEventListener('click', returnToModal);
 
-  // Cliquez en dehors de la modale pour la fermer
+  // Cliquez en dehors du formulaire pour la fermer
   window.onclick = (event) => {
     const modalForm = document.querySelector('#modal-form');
     if (event.target === modalForm) {
       closeModalForm();
+      resetForm();
     }
   }
 });
 
 // Fonction pour ouvrir le formulaire
-function openModalForm() {
+async function openModalForm() {
   const modalForm = document.querySelector('#modal-form');
+  const workCategorySelect = document.querySelector('#work-category');
+
+  const response = await fetch('http://localhost:5678/api/categories');
+  const categories = await response.json();
+
+  while (workCategorySelect.firstChild) {
+    workCategorySelect.removeChild(workCategorySelect.firstChild);
+  }
+
+  // Ajoutez une première option vide
+  const emptyOption = document.createElement('option');
+  emptyOption.value = "";
+  emptyOption.textContent = "";
+  workCategorySelect.appendChild(emptyOption);
+
+  if(categories && Array.isArray(categories)) {
+    categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category.id;
+      option.textContent = category.name;
+      workCategorySelect.appendChild(option);
+    });
+  }
 
   // Affiche le formulaire
   modalForm.classList.remove('hidden');
@@ -240,10 +264,123 @@ function openModalForm() {
 function closeModalForm() {
   const modalForm = document.querySelector('#modal-form');
   modalForm.classList.add('hidden');
+
+  // Réinitialiser le formulaire
+  resetForm();
 }
 
 function returnToModal() {
   closeModalForm();
   openModal();
+  resetForm();
 }
 
+
+// Fonction pour réinitialiser le formulaire et l'affichage des éléments
+function resetForm() {
+  const uploadForm = document.getElementById('uploadForm');
+  const image = document.getElementById("displayImage");
+  const uploadContainer = document.querySelector('.upload-container');
+
+  // Réinitialiser le formulaire
+  uploadForm.reset();
+
+  // Rétablir l'affichage des éléments
+  image.style.display = "none";
+  Array.from(uploadContainer.children).forEach(child => {
+    // Ne modifie pas l'affichage de l'input file et de l'image
+    if(child.id !== "displayImage" && child.id !== "imageUpload") {
+      child.style.display = "block";
+    }
+  });
+}
+
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Empêche la soumission du formulaire
+});
+
+document.getElementById('uploadButton').addEventListener('click', function(event) {
+  event.preventDefault(); // Empêche le comportement par défaut
+  document.getElementById('imageUpload').click();
+});
+
+document.getElementById("imageUpload").addEventListener("change", function(event){
+  let file = event.target.files[0];
+  let imageUrl = URL.createObjectURL(file);
+
+  let image = document.getElementById("displayImage");
+  image.src = imageUrl;
+  image.style.display = "block"; // Rend l'image visible
+  
+  let uploadContainer = document.querySelector('.upload-container');
+  
+  Array.from(uploadContainer.children).forEach(child => {
+    if(child.id !== "displayImage") {
+      child.style.display = "none";
+    }
+  });
+});
+
+// Envoie le nouveau travail
+document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Empêche la soumission du formulaire
+
+  const titleInput = document.querySelector('#work-title');
+  const categorySelect = document.querySelector('#work-category');
+  const imageUpload = document.querySelector('#imageUpload');
+
+  const title = titleInput.value;
+  const category = categorySelect.value;
+  const image = imageUpload.files[0];
+
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('title', title);
+  formData.append('category', category);
+
+  try {
+    const response = await fetch('http://localhost:5678/api/works', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const work = await response.json();
+    console.log('Work created', work);
+    closeModalForm();
+    removeExistingWorks();
+    const works = await fetchWorks();
+    displayWorks(works);
+  } catch (error) {
+    console.error('Erreur lors de la création du travail', error);
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const titleInput = document.getElementById('work-title');
+  const categoryInput = document.getElementById('work-category');
+  const imageInput = document.getElementById('imageUpload');
+  const submitButton = document.getElementById('work-submit');
+
+  titleInput.addEventListener('change', validateForm);
+  categoryInput.addEventListener('change', validateForm);
+  imageInput.addEventListener('change', validateForm);
+
+  function validateForm() {
+    // Vérifiez si tous les champs sont remplis
+    if (titleInput.value && categoryInput.value && imageInput.files.length > 0) {
+      // Si oui, ajoutez la classe 'valid' au bouton de soumission
+      submitButton.classList.add('valid');
+    } else {
+      // Sinon, retirez la classe 'valid'
+      submitButton.classList.remove('valid');
+    }
+  }
+});
