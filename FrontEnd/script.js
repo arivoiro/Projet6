@@ -155,7 +155,9 @@ function closeModal() {
 
 // Gestionnaire d'événements pour le bouton de suppression
 document.addEventListener('click', async (event) => {
-  if (event.target.tagName === 'BUTTON' || event.target.classList.contains('fa-trash-can')) {
+  // Vérifie si le bouton cliqué ou son parent est un bouton de suppression
+  if ((event.target.tagName === 'BUTTON' && event.target.classList.contains('delete-button')) 
+    || (event.target.parentNode.tagName === 'BUTTON' && event.target.parentNode.classList.contains('delete-button'))) {
     let workIndex = event.target.dataset.workIndex;
     if (!workIndex && event.target.parentNode.tagName === 'BUTTON') {
       workIndex = event.target.parentNode.dataset.workIndex;
