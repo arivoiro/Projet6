@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeButton = document.querySelector('#close-button');
   closeButton.addEventListener('click', closeModal);
 
-  // Cliquez en dehors de la modale pour la fermer
+  // Cliquer en dehors de la modale pour la fermer
   window.onclick = (event) => {
     const modal = document.querySelector('#modal');
     if (event.target === modal) {
@@ -149,8 +149,8 @@ function openModal() {
     container.appendChild(editText);
 
     const deleteButton = document.createElement('button');
-    deleteButton.classList.add('delete-button'); // Ajoutez la classe delete-button
-    deleteButton.dataset.workIndex = index; // Ajouter l'attribut data-work-index au bouton de suppression
+    deleteButton.classList.add('delete-button'); 
+    deleteButton.dataset.workIndex = index;
 
     const deleteIcon = document.createElement('i');
     deleteIcon.classList.add('fas', 'fa-trash-can');
@@ -184,7 +184,6 @@ document.addEventListener('click', async (event) => {
     }
     if (workIndex !== undefined) {
       await deleteWork(parseInt(workIndex));
-      // Refresh the works
       removeExistingWorks();
       const works = await fetchWorks();
       displayWorks(works);
@@ -313,11 +312,11 @@ function resetForm() {
 }
 
 document.getElementById('uploadForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Empêche la soumission du formulaire
+  event.preventDefault(); 
 });
 
 document.getElementById('uploadButton').addEventListener('click', function(event) {
-  event.preventDefault(); // Empêche le comportement par défaut
+  event.preventDefault(); 
   document.getElementById('imageUpload').click();
 });
 
@@ -327,7 +326,7 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 
   let image = document.getElementById("displayImage");
   image.src = imageUrl;
-  image.style.display = "block"; // Rend l'image visible
+  image.style.display = "block"; 
   
   let uploadContainer = document.querySelector('.upload-container');
   
@@ -340,7 +339,7 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 
 // Envoie le nouveau travail
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
-  event.preventDefault(); // Empêche la soumission du formulaire
+  event.preventDefault(); 
 
   const titleInput = document.querySelector('#work-title');
   const categorySelect = document.querySelector('#work-category');
