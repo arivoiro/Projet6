@@ -48,7 +48,11 @@ function displayWorks(works) {
 async function fetchCategories() {
   const response = await fetch('http://localhost:5678/api/categories');
   const categories = await response.json();
-  displayCategories(categories);
+  const token = localStorage.getItem('token');
+  if (!token) {
+    // Si l'utilisateur n'est pas connecté, affiche les catégories
+    displayCategories(categories);
+  }
 }
 
 // Affiche les boutons de catégorie et ajoute un gestionnaire d'événements pour le filtrage
@@ -92,15 +96,21 @@ function filterWorks(categoryId) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const editButton = document.getElementById('edit-button');
+  const editButtonImage = document.getElementById('edit-button-image');
+  const editButtonTitle = document.getElementById('edit-button-title');
 
   // Vérifie si l'utilisateur est connecté 
   const token = localStorage.getItem('token');
   if (token) {
     // Si l'utilisateur est connecté, affiche le bouton "modifier"
     editButton.style.display = 'block';
+    editButtonImage.style.display = 'block';
+    editButtonTitle.style.display = 'block';
   } else {
     // Sinon, masque le bouton "modifier"
     editButton.style.display = 'none';
+    editButtonImage.style.display = 'none';
+    editButtonTitle.style.display = 'none';
   }
 });
 
@@ -109,6 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Bouton d'ouverture de la modale
   const editButton = document.querySelector('#edit-button');
   editButton.addEventListener('click', openModal);
+
+  // Gestionnaire d'événements pour les boutons "modifier" au-dessus de l'image et du titre
+  const editButtonImage = document.querySelector('#edit-button-image');
+  const editButtonTitle = document.querySelector('#edit-button-title');
+  editButtonImage.addEventListener('click', preventModalOpen);
+  editButtonTitle.addEventListener('click', preventModalOpen);
 
   // Bouton de fermeture de la modale
   const closeButton = document.querySelector('#close-button');
@@ -122,6 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// Fonction pour empêcher l'ouverture de la modale
+function preventModalOpen(event) {
+  event.stopPropagation();
+}
 
 // Fonction pour ouvrir la modale et afficher les images de la galerie
 function openModal() {
@@ -400,3 +421,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loginLink = document.querySelector('nav li:nth-child(3) a');
+
+  const token = localStorage.getItem('token');
+  if (token) {
+    // Si un token est présent dans le localStorage, l'utilisateur est connecté
+    loginLink.textContent = 'logout';
+    loginLink.addEventListener('click', logout);
+  } else {
+    // Si aucun token n'est présent, l'utilisateur n'est pas connecté
+    loginLink.textContent = 'login';
+    loginLink.href = 'login.html'; // Redirige vers la page de connexion
+  }
+});
+
+// Fonction pour déconnecter l'utilisateur
+function logout() {
+  localStorage.removeItem('token');
+  window.location.href = 'login.html'; // Redirige vers la page de connexion
+}

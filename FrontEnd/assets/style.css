@@ -121,7 +121,8 @@ li:hover {
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
+	margin-bottom: 3em;
 }
 #introduction h2 {
 	margin-bottom: 1em;
@@ -603,4 +604,64 @@ input #work-title:focus {
 
 button#work-submit.logged {
 	background-color: #1D6154;
+}
+
+#edit-button-title {
+	margin-bottom: 2em;	
+}
+
+article {
+  padding: 50px 0;
+}
+
+#edit-button-image {
+	position: relative;
+	margin-left: 4.3em;
+	margin-top: 1em;
+}
+
+
+#publish-bar {
+	height: 59px;
+	background-color: black;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#edit-button-publish {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	margin-right: 30px;
+}
+
+#edit-button-publish i {
+	margin-right: 10px;
+}
+
+#edit-button-publish span {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#publish-changes {
+	background-color: white;
+	color: black;
+	border: none;
+	padding: 10px 20px;
+	font-weight: bold;
+	border-radius: 60px;
+	height: 40px;
+	font-size: 14px;
+	padding: 0 25px;
+}
+
+header {
+	margin-top: 99px; /* Ajoute une marge pour compenser la hauteur de la barre de publication */
 }
