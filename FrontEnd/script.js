@@ -426,16 +426,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginLink = document.querySelector('nav li:nth-child(3) a');
+  const publishBar = document.querySelector('#publish-bar');
 
   const token = localStorage.getItem('token');
   if (token) {
     // Si un token est présent dans le localStorage, l'utilisateur est connecté
     loginLink.textContent = 'logout';
     loginLink.addEventListener('click', logout);
+
+    publishBar.style.display = 'flex';
   } else {
     // Si aucun token n'est présent, l'utilisateur n'est pas connecté
     loginLink.textContent = 'login';
     loginLink.href = 'login.html'; // Redirige vers la page de connexion
+
+    publishBar.style.display = 'none';
+    document.querySelector('header').style.marginTop = '50px';
   }
 });
 
